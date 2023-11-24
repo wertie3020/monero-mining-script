@@ -41,7 +41,7 @@ then
   rm ./$p2pool_name
 
   # start p2pool
-  screen -dmS p2pool /bin/bash -c "sudo ./$p2pool_folder/p2pool --host $monerod_ip --wallet $walletAddres"
+  screen -dmS p2pool /bin/bash -c "sudo .$p2pool_folder/p2pool --host $monerod_ip --wallet $walletAddres"
 fi
 
 # get latest xmrig software
@@ -51,4 +51,4 @@ xmrig_name=$(curl -s https://api.github.com/repos/xmrig/xmrig/releases/latest | 
 tar -xf "./${xmrig_name}"
 rm ./$xmrig_name
 # start xmrig
-screen -dmS xmrig /bin/bash -c "sudo ./$xmrig_folder/xmrig -o $p2pool_ip:3333"
+screen -dmS xmrig /bin/bash -c "sudo .$xmrig_folder/xmrig -o $p2pool_ip:3333"
