@@ -35,6 +35,7 @@ if [ "$useP2Pool" = "yes" ]
 then
   # get latest p2pool software
   p2pool_folder="p2pool"
+  mkdir $p2pool_folder
   p2pool_browser_download_url=$(curl -s https://api.github.com/repos/SChernykh/p2pool/releases/latest | grep "\"browser_download_url\":.*-linux-x64.tar.gz" | cut -d : -f 2,3 | tr -d \")
   wget $p2pool_browser_download_url
   p2pool_name=$(curl -s https://api.github.com/repos/SChernykh/p2pool/releases/latest | grep "\"name\":.*-linux-x64.tar.gz" | cut -d : -f 2,3 | tr -d \" | tr -d [:space:] | tr -d ,)
@@ -48,6 +49,7 @@ fi
 
 # get latest xmrig software
 xmrig_folder="xmrig"
+µmkdir $xmrig_folder
 xmrig_browser_download_url=$(curl -s https://api.github.com/repos/xmrig/xmrig/releases/latest | grep "\"browser_download_url\":.*-linux-static-x64.tar.gz" | cut -d : -f 2,3 | tr -d \") 
 wget $xmrig_browser_download_url
 xmrig_name=$(curl -s https://api.github.com/repos/xmrig/xmrig/releases/latest | grep "\"name\":.*-linux-static-x64.tar.gz" | cut -d : -f 2,3 | tr -d \" | tr -d [:space:] | tr -d ,)
