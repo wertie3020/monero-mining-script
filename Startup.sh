@@ -49,7 +49,7 @@ fi
 
 # get latest xmrig software
 xmrig_folder="xmrig"
-µmkdir $xmrig_folder
+mkdir $xmrig_folder
 xmrig_browser_download_url=$(curl -s https://api.github.com/repos/xmrig/xmrig/releases/latest | grep "\"browser_download_url\":.*-linux-static-x64.tar.gz" | cut -d : -f 2,3 | tr -d \") 
 wget $xmrig_browser_download_url
 xmrig_name=$(curl -s https://api.github.com/repos/xmrig/xmrig/releases/latest | grep "\"name\":.*-linux-static-x64.tar.gz" | cut -d : -f 2,3 | tr -d \" | tr -d [:space:] | tr -d ,)
