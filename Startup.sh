@@ -24,15 +24,14 @@ then
 else
   export $(cat .env | xargs)
 fi
-echo $walletAddres
 
-if [$UseMonerod == "yes"]
+if [ "$UseMonerod" = "yes" ]
 then
 # start monerod
 screen -dmS monero /bin/bash -c "sudo monerod --zmq-pub tcp://127.0.0.1:18083 --out-peers 8 --in-peers 16 --add-priority-node=p2pmd.xmrvsbeast.com:18080 --add-priority-node=nodes.hashvault.pro:18080 --disable-dns-checkpoints --enable-dns-blocklist"
 fi
 
-if [$useP2Pool == "yes"]
+if [ "$useP2Pool" = "yes" ]
 then
   # get latest p2pool software
   p2pool_browser_download_url=$(curl -s https://api.github.com/repos/SChernykh/p2pool/releases/latest | grep "\"browser_download_url\":.*-linux-x64.tar.gz" | cut -d : -f 2,3 | tr -d \")
@@ -51,5 +50,5 @@ wget $xmrig_browser_download_url
 xmrig_name=$(curl -s https://api.github.com/repos/xmrig/xmrig/releases/latest | grep "\"name\":.*-linux-static-x64.tar.gz" | cut -d : -f 2,3 | tr -d \" | tr -d [:space:] | tr -d ,)
 tar -xf "./${xmrig_name}"
 rm ./$xmrig_name
-# start mining
-screen -dmS mining /bin/bash -c "sudo ./$xmrig_folder/xmrig -o $p2pool_ip:3333"
+# start xmrig
+screen -dmS xmrig /bin/bash -c "sudo ./$xmrig_folder/xmrig -o $p2pool_ip:3333"
